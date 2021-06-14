@@ -1,4 +1,4 @@
-package com.mathpar.plans;
+package com.mathpar.plan;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

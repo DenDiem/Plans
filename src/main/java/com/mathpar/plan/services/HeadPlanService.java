@@ -1,7 +1,7 @@
-package com.mathpar.plans.services;
+package com.mathpar.plan.services;
 
-import com.mathpar.plans.entities.HeadPlan;
-import com.mathpar.plans.repositories.HeadPlanRepository;
+import com.mathpar.plan.entities.HeadPlan;
+import com.mathpar.plan.repositories.HeadPlanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.transaction.Transactional;

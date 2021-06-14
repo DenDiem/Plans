@@ -1,8 +1,8 @@
-package com.mathpar.plans.services;
+package com.mathpar.plan.services;
 
-import com.mathpar.plans.entities.SubPlan;
-import com.mathpar.plans.repositories.SubPlanRepository;
-import com.mathpar.plans.utils.enums.SubPlanType;
+import com.mathpar.plan.entities.SubPlan;
+import com.mathpar.plan.repositories.SubPlanRepository;
+import com.mathpar.plan.utils.enums.SubPlanType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,4 +33,6 @@ public class SubPlanService {
     public void purgeSubPlanById(long headPlanId){
         subPlanRepository.deleteById(headPlanId);
     }
+
+
 }

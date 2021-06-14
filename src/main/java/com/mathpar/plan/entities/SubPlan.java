@@ -1,6 +1,6 @@
-package com.mathpar.plans.entities;
+package com.mathpar.plan.entities;
 
-import com.mathpar.plans.utils.enums.SubPlanType;
+import com.mathpar.plan.utils.enums.SubPlanType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

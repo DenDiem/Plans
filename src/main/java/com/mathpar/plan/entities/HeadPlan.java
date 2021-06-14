@@ -1,4 +1,4 @@
-package com.mathpar.plans.entities;
+package com.mathpar.plan.entities;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
