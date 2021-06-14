@@ -31,18 +31,22 @@ public class SubPlan implements Serializable {
     @Column(name = "order")
     private int order;
 
-    public SubPlan(long id) { this.id = id; }
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "head_plan_id", referencedColumnName = "id")
+    private HeadPlan headPlan;
 
-    public SubPlan(String name, SubPlanType type, int order) {
+    public SubPlan(String name, SubPlanType type, int order, HeadPlan headPlan) {
         this.name = name;
         this.type = type;
         this.order = order;
+        this.headPlan = headPlan;
     }
 
-    public SubPlan(String name, SubPlanType type, int order, int timeToComplete) {
+    public SubPlan(String name, SubPlanType type, int order, HeadPlan headPlan, int timeToComplete) {
         this.name = name;
         this.type = type;
         this.order = order;
+        this.headPlan = headPlan;
         if (this.type == SubPlanType.Exam) {
             this.timeToComplete = timeToComplete;
         }
