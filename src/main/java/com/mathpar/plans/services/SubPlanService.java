@@ -1,5 +1,6 @@
 package com.mathpar.plans.services;
 
+import com.mathpar.plans.entities.HeadPlan;
 import com.mathpar.plans.entities.SubPlan;
 import com.mathpar.plans.repositories.SubPlanRepository;
 import com.mathpar.plans.utils.enums.SubPlanType;
@@ -19,8 +20,8 @@ public class SubPlanService {
         return subPlanRepository.getById(subPlanId);
     }
 
-    public SubPlan createSubPlan(String name, SubPlanType type, int order, Optional<Integer> timeToComplete){
-        SubPlan newSubPlan = new SubPlan(name, type, order);
+    public SubPlan createSubPlan(String name, SubPlanType type, int order, HeadPlan headPlan, Optional<Integer> timeToComplete){
+        SubPlan newSubPlan = new SubPlan(name, type, order, headPlan);
         timeToComplete.ifPresent(newSubPlan::setTimeToComplete);
         return subPlanRepository.save(newSubPlan);
     }
