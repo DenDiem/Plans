@@ -1,5 +1,6 @@
 package com.mathpar.plans.controllers.api;
 
+import com.mathpar.plans.entities.HeadPlan;
 import com.mathpar.plans.services.SubPlanService;
 import com.mathpar.plans.utils.PublicApi;
 import com.mathpar.plans.utils.dto.SubPlanPayload;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @PublicApi
-@Api(tags = "Plan")
+@Api(tags = "SubPlan")
 public class SubPlansController {
     private final SubPlanService subPlanService;
 
@@ -20,7 +21,8 @@ public class SubPlansController {
 
     @PostMapping("create-subplan")
     public String createSubPlan(@RequestBody SubPlanPayload payload, @RequestHeader("user-agent") String userAgent){
-        var account = subPlanService.createSubPlan(payload.getSubplanName(), payload.getSubplanType(), 1, java.util.Optional.of(1));
+        HeadPlan headPlan = new HeadPlan();
+        var account = subPlanService.createSubPlan(payload.getSubplanName(), payload.getSubplanType(),1 ,headPlan, java.util.Optional.of(1));
         return "OK";
     }
 

@@ -13,12 +13,12 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-@Entity(name = "head_plans")
+@Entity(name = "head_plans_table")
 public class HeadPlan implements Serializable {
     @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @Column(name = "head_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long head_id;
 
     @Column(name = "name")
     private String name;
@@ -41,21 +41,20 @@ public class HeadPlan implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateDate;
 
-    @OneToMany(mappedBy = "head_plans_id", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @OrderBy("order ASC")
-    private List<SubPlan> subPlans;
+    @OneToMany(mappedBy = "head_plan_var", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<SubPlan> subPlans_vars;
 
     public HeadPlan(String name, Date startDate, Date endDate) {
         this.name = name;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.subPlans = new ArrayList<>();
+        this.subPlans_vars = new ArrayList<>();
     }
 
     public HeadPlan(String name, Date startDate, Date endDate, List<SubPlan> subPlans){
         this.name = name;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.subPlans = subPlans;
+        this.subPlans_vars = subPlans;
     }
 }

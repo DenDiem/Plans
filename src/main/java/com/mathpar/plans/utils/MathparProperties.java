@@ -17,7 +17,7 @@ public class MathparProperties {
 
     public void loadPropertiesFromManager(String secretmanagerUrlPrefix) {
         RestTemplate restTemplate = new RestTemplate();
-        var namespaceProperties = restTemplate.getForObject(secretmanagerUrlPrefix+"/getNamespaceProperties?namespace=plans", PlanProperties.class);
+        var namespaceProperties = restTemplate.getForObject(secretmanagerUrlPrefix+"/getNamespaceProperties?namespace=plan", PlanProperties.class);
         if(namespaceProperties==null) throw new RuntimeException("Can't load authentication properties");
         this.databasePassword = namespaceProperties.databasePassword;
         this.databaseUsername = namespaceProperties.databaseUsername;
