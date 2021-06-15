@@ -25,7 +25,7 @@ public class SubPlanService {
     public SubPlan createSubPlan(String name, SubPlanType type, int order, HeadPlan headPlan, Optional<Integer> timeToComplete){
         SubPlan newSubPlan = new SubPlan(name, type, order, headPlan);
         timeToComplete.ifPresent(newSubPlan::setTimeToComplete);
-        return subPlanRepository.save(newSubPlan);
+        return subPlanRepository.saveAndFlush(newSubPlan);
     }
 
     public SubPlan updateSubPlan(SubPlan subPlan){

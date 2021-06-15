@@ -1,6 +1,7 @@
 package com.mathpar.plans.controllers.api;
 
 import com.mathpar.plans.entities.HeadPlan;
+import com.mathpar.plans.entities.SubPlan;
 import com.mathpar.plans.services.SubPlanService;
 import com.mathpar.plans.utils.PublicApi;
 import com.mathpar.plans.utils.dto.SubPlanPayload;
@@ -19,15 +20,17 @@ public class SubPlansController {
         this.subPlanService = subPlanService;
     }
 
-    @PostMapping("create-subplan")
-    public String createSubPlan(@RequestBody SubPlanPayload payload, @RequestHeader("user-agent") String userAgent){
+    @PostMapping("sub-plan")
+    public SubPlan createSubPlan(@RequestBody SubPlanPayload payload, @RequestHeader("user-agent") String userAgent){
         HeadPlan headPlan = new HeadPlan();
-        var account = subPlanService.createSubPlan(payload.getSubplanName(), payload.getSubplanType(),1 ,headPlan, java.util.Optional.of(1));
-        return "OK";
+        return subPlanService.createSubPlan(payload.getSubplanName(), payload.getSubplanType(),1 ,null, java.util.Optional.of(1));
+
     }
 
     @DeleteMapping("delete-subplan")
     public void deleteAccount(@RequestParam("subPlanId") long subPlanId){
         subPlanService.purgeSubPlanById(subPlanId);
     }
+
+
 }

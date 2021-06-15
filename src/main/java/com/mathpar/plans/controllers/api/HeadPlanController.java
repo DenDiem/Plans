@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.List;
 
 @PublicApi
 @RestController
@@ -18,7 +19,7 @@ public class HeadPlanController {
     private final HeadPlanService headPlanService;
 
     @PostMapping("/head-plans/create")
-    public HeadPlan createHeadPlan(@RequestBody CreateHeadPlanPayload payload) {
+    public HeadPlan createHeadPlan(@RequestBody CreateHeadPlanPayload payload,@RequestParam (value = "23", required = false) CreateHeadPlanPayload a ) {
         return headPlanService.createHeadPlan(payload.getHeadPlanName(), null, null);
     }
 
@@ -34,5 +35,9 @@ public class HeadPlanController {
     @DeleteMapping("/head-plans/delete/{head_plan_id}")
     public void deleteHeadPlan(@PathVariable(name = "head_plan_id") long headPlanId){
         headPlanService.purgeHeadPlanById(headPlanId);
+    }
+    @GetMapping("/getAllPlans")
+    public List<HeadPlan> getAllPlans(){
+       return headPlanService.findAll();
     }
 }
