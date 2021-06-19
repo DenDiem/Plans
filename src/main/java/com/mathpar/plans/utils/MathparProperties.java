@@ -17,7 +17,7 @@ public class MathparProperties {
 
     public void loadPropertiesFromManager(String secretmanagerUrlPrefix) {
         RestTemplate restTemplate = new RestTemplate();
-        var namespaceProperties = restTemplate.getForObject(secretmanagerUrlPrefix+"/getNamespaceProperties?namespace=plans", SchoolProperties.class);
+        var namespaceProperties = restTemplate.getForObject(secretmanagerUrlPrefix+"/getNamespaceProperties?namespace=plan", PlanProperties.class);
         if(namespaceProperties==null) throw new RuntimeException("Can't load authentication properties");
         this.databasePassword = namespaceProperties.databasePassword;
         this.databaseUsername = namespaceProperties.databaseUsername;
@@ -27,7 +27,7 @@ public class MathparProperties {
     }
 
     @Data
-    public static class SchoolProperties {
+    public static class PlanProperties {
         @JsonProperty("DatabaseUrl")
         private String databaseUrl;
         @JsonProperty("DatabaseUsername")
