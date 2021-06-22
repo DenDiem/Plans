@@ -12,8 +12,10 @@ import java.util.Optional;
 @AllArgsConstructor
 public class SubPlanPayload {
     private String subplanName;
-    private SubPlanType subplanType;
+    private String subPlanType;
     private int order;
     Optional<Integer> timeToCompl;
+    private int head_id;
+    private String body;
 
 }

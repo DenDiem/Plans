@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -22,12 +24,23 @@ public class SubPlanService {
         return subPlanRepository.getById(subPlanId);
     }
 
-    public SubPlan createSubPlan(String name, SubPlanType type, int order, HeadPlan headPlan, Optional<Integer> timeToComplete){
-        SubPlan newSubPlan = new SubPlan(name, type, order, headPlan);
+    public SubPlan createSubPlan(String name, SubPlanType type, int order, int headPlan, Optional<Integer> timeToComplete, String content){
+        SubPlan newSubPlan = new SubPlan(name, type, order, headPlan,content);
         timeToComplete.ifPresent(newSubPlan::setTimeToComplete);
         return subPlanRepository.saveAndFlush(newSubPlan);
     }
+    public List<SubPlan> getAllwithHeadId (Integer head_id){
+        List<SubPlan> all = subPlanRepository.findAll();
+        List<SubPlan> result =new ArrayList<>();
+        if (all.isEmpty()) return  result;
 
+        for (SubPlan sp:  all
+             ) {
+            if(Integer.valueOf(sp.getHead_plan_var()).equals(head_id))
+            result.add(sp);
+        }
+        return result;
+    }
     public SubPlan updateSubPlan(SubPlan subPlan){
         return subPlanRepository.save(subPlan);
     }

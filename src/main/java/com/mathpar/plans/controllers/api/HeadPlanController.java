@@ -37,7 +37,10 @@ public class HeadPlanController {
         headPlanService.purgeHeadPlanById(headPlanId);
     }
     @GetMapping("/getAllPlans")
-    public List<HeadPlan> getAllPlans(){
-       return headPlanService.findAll();
+    public List<HeadPlan> getAllPlans() {
+
+        List<HeadPlan> hp =  headPlanService.findAll();
+        System.out.println(hp.toString());
+        return hp;
     }
 }
